@@ -1,0 +1,30 @@
+|machine_etats_eclairage
+clk => current_state~1.DATAIN
+reset => current_state~3.DATAIN
+presence_detectee => next_state.DATAA
+presence_detectee => Selector0.IN2
+presence_detectee => next_state.OUTPUTSELECT
+presence_detectee => next_state.OUTPUTSELECT
+presence_detectee => Selector1.IN0
+presence_detectee => next_state.DATAA
+luminosite[0] => LessThan0.IN16
+luminosite[0] => LessThan1.IN16
+luminosite[1] => LessThan0.IN15
+luminosite[1] => LessThan1.IN15
+luminosite[2] => LessThan0.IN14
+luminosite[2] => LessThan1.IN14
+luminosite[3] => LessThan0.IN13
+luminosite[3] => LessThan1.IN13
+luminosite[4] => LessThan0.IN12
+luminosite[4] => LessThan1.IN12
+luminosite[5] => LessThan0.IN11
+luminosite[5] => LessThan1.IN11
+luminosite[6] => LessThan0.IN10
+luminosite[6] => LessThan1.IN10
+luminosite[7] => LessThan0.IN9
+luminosite[7] => LessThan1.IN9
+mode_automatique => process_1.IN1
+etat_eclairage[0] <= etat_eclairage[0].DB_MAX_OUTPUT_PORT_TYPE
+etat_eclairage[1] <= etat_eclairage[1].DB_MAX_OUTPUT_PORT_TYPE
+
+

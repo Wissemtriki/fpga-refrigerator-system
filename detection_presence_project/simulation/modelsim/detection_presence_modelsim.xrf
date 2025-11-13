@@ -1,0 +1,12 @@
+vendor_name = ModelSim
+source_file = 1, E:/ProjetFPGA/detection_presence_project/detection_presence.vhd
+source_file = 1, E:/ProjetFPGA/detection_presence_project/db/detection_presence.cbx.xml
+source_file = 1, c:/altera/13.1/quartus/libraries/vhdl/ieee/prmtvs_b.vhd
+source_file = 1, c:/altera/13.1/quartus/libraries/vhdl/ieee/prmtvs_p.vhd
+source_file = 1, c:/altera/13.1/quartus/libraries/vhdl/ieee/timing_b.vhd
+source_file = 1, c:/altera/13.1/quartus/libraries/vhdl/ieee/timing_p.vhd
+design_name = detection_presence
+instance = comp, \presence_detectee~output\, presence_detectee~output, detection_presence, 1
+instance = comp, \clk~input\, clk~input, detection_presence, 1
+instance = comp, \capteur_mouvement~input\, capteur_mouvement~input, detection_presence, 1
+instance = comp, \reset~input\, reset~input, detection_presence, 1

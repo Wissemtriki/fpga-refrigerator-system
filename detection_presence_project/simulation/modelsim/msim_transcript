@@ -1,0 +1,67 @@
+# Reading C:/altera/13.1/modelsim_ase/tcl/vsim/pref.tcl 
+# do detection_presence_run_msim_rtl_vhdl.do 
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Copying C:\altera\13.1\modelsim_ase\win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# ** Warning: Copied C:\altera\13.1\modelsim_ase\win32aloem/../modelsim.ini to modelsim.ini.
+#          Updated modelsim.ini.
+# 
+# vcom -93 -work work {E:/ProjetFPGA/detection_presence_project/detection_presence.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity detection_presence
+# -- Compiling architecture Behavioral of detection_presence
+# 
+vcom -reportprogress 300 -work work E:/ProjetFPGA/detection_presence_project/detection_presence.vhd
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity detection_presence
+# -- Compiling architecture Behavioral of detection_presence
+vcom -reportprogress 300 -work work E:/ProjetFPGA/detection_presence_project/tb_detection_presence.vhd
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity tb_detection_presence
+# -- Compiling architecture Behavioral of tb_detection_presence
+# -- Loading entity detection_presence
+vsim +altera -do detection_presence_run_msim_rtl_vhdl.do -l msim_transcript -gui work.tb_detection_presence
+# vsim +altera -do detection_presence_run_msim_rtl_vhdl.do -l msim_transcript -gui work.tb_detection_presence 
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.tb_detection_presence(behavioral)
+# Loading work.detection_presence(behavioral)
+# do detection_presence_run_msim_rtl_vhdl.do 
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Modifying modelsim.ini
+# 
+# vcom -93 -work work {E:/ProjetFPGA/detection_presence_project/detection_presence.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity detection_presence
+# -- Compiling architecture Behavioral of detection_presence
+# 
+add wave  \
+sim:/tb_detection_presence/capteur_mouvement \
+sim:/tb_detection_presence/clk \
+sim:/tb_detection_presence/reset \
+sim:/tb_detection_presence/presence_detectee
+run -all
+run -all
+# Break key hit 
+# Simulation stop requested.

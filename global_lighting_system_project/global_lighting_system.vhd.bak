@@ -1,0 +1,76 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity global_lighting_system is
+    Port (
+        clk               : in  STD_LOGIC;
+        reset             : in  STD_LOGIC;
+        presence_detectee : in  STD_LOGIC;
+        luminosite        : in  STD_LOGIC_VECTOR(7 downto 0);
+        mode_automatique  : in  STD_LOGIC;
+        etat_eclairage    : out STD_LOGIC_VECTOR(1 downto 0)
+    );
+end global_lighting_system;
+
+architecture Behavioral of global_lighting_system is
+    signal internal_presence : STD_LOGIC;
+    signal internal_luminosity : STD_LOGIC_VECTOR(7 downto 0);
+    signal internal_eclairage_state : STD_LOGIC_VECTOR(1 downto 0);
+
+    component presence_detection_module
+        Port (
+            clk : in  STD_LOGIC;
+            reset : in  STD_LOGIC;
+            presence : out STD_LOGIC
+        );
+    end component;
+
+    component luminosity_module
+        Port (
+            clk : in  STD_LOGIC;
+            luminosite : out STD_LOGIC_VECTOR(7 downto 0)
+        );
+    end component;
+
+    component state_machine_module
+        Port (
+            clk : in  STD_LOGIC;
+            reset : in  STD_LOGIC;
+            presence : in  STD_LOGIC;
+            luminosite : in  STD_LOGIC_VECTOR(7 downto 0);
+            mode_automatique : in  STD_LOGIC;
+            etat_eclairage : out STD_LOGIC_VECTOR(1 downto 0)
+        );
+    end component;
+
+begin
+    -- Presence Detection Module instantiation
+    presence_det_inst : presence_detection_module
+        port map (
+            clk => clk,
+            reset => reset,
+            presence => internal_presence
+        );
+
+    -- Luminosity Module instantiation
+    luminosity_inst : luminosity_module
+        port map (
+            clk => clk,
+            luminosite => internal_luminosity
+        );
+
+    -- State Machine Module instantiation
+    state_machine_inst : state_machine_module
+        port map (
+            clk => clk,
+            reset => reset,
+            presence => internal_presence,
+            luminosite => internal_luminosity,
+            mode_automatique => mode_automatique,
+            etat_eclairage => internal_eclairage_state
+        );
+
+    -- Output
+    etat_eclairage <= internal_eclairage_state;
+
+end Behavioral;

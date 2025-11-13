@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Sun Oct 06 12:10:49 2024
+Quartus II 64-Bit Version : 13.1.0 Build 162 10/23/2013 SJ Full Version
+Revision Name : machine_etats_eclairage
+Top-level Entity Name : machine_etats_eclairage
+Family : Cyclone IV E
+Total logic elements : 10
+    Total combinational functions : 10
+    Dedicated logic registers : 2
+Total registers : 2
+Total pins : 14
+Total virtual pins : 0
+Total memory bits : 0
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

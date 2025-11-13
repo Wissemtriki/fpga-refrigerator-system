@@ -1,0 +1,130 @@
+# Reading C:/altera/13.1/modelsim_ase/tcl/vsim/pref.tcl 
+# do global_lighting_system_run_msim_rtl_vhdl.do 
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Copying C:\altera\13.1\modelsim_ase\win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# ** Warning: Copied C:\altera\13.1\modelsim_ase\win32aloem/../modelsim.ini to modelsim.ini.
+#          Updated modelsim.ini.
+# 
+# vcom -93 -work work {E:/ProjetFPGA/global_lighting_system_project/mesure_luminosite.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity mesure_luminosite
+# -- Compiling architecture Behavioral of mesure_luminosite
+# vcom -93 -work work {E:/ProjetFPGA/global_lighting_system_project/machine_etats_eclairage.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity machine_etats_eclairage
+# -- Compiling architecture behavioral of machine_etats_eclairage
+# vcom -93 -work work {E:/ProjetFPGA/global_lighting_system_project/detection_presence.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity detection_presence
+# -- Compiling architecture Behavioral of detection_presence
+# vcom -93 -work work {E:/ProjetFPGA/global_lighting_system_project/global_lighting_system.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity global_lighting_system
+# -- Compiling architecture Behavioral of global_lighting_system
+# 
+vcom -reportprogress 300 -work work E:/ProjetFPGA/global_lighting_system_project/detection_presence.vhd
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity detection_presence
+# -- Compiling architecture Behavioral of detection_presence
+vcom -reportprogress 300 -work work E:/ProjetFPGA/global_lighting_system_project/global_lighting_system.vhd
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity global_lighting_system
+# -- Compiling architecture Behavioral of global_lighting_system
+vcom -reportprogress 300 -work work E:/ProjetFPGA/global_lighting_system_project/machine_etats_eclairage.vhd
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity machine_etats_eclairage
+# -- Compiling architecture behavioral of machine_etats_eclairage
+vcom -reportprogress 300 -work work E:/ProjetFPGA/global_lighting_system_project/mesure_luminosite.vhd
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity mesure_luminosite
+# -- Compiling architecture Behavioral of mesure_luminosite
+vcom -reportprogress 300 -work work E:/ProjetFPGA/global_lighting_system_project/tb_global_lighting_system.vhd
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity tb_global_lighting_system
+# -- Compiling architecture Behavioral of tb_global_lighting_system
+vsim -voptargs=+acc work.tb_global_lighting_system
+# vsim -voptargs=+acc work.tb_global_lighting_system 
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.tb_global_lighting_system(behavioral)
+# Loading work.global_lighting_system(behavioral)
+# Loading work.detection_presence(behavioral)
+# Loading work.mesure_luminosite(behavioral)
+# Loading work.machine_etats_eclairage(behavioral)
+add wave  \
+sim:/tb_global_lighting_system/clk \
+sim:/tb_global_lighting_system/reset \
+sim:/tb_global_lighting_system/capteur_mouvement \
+sim:/tb_global_lighting_system/valeur_luminosite \
+sim:/tb_global_lighting_system/mode_automatique \
+sim:/tb_global_lighting_system/etat_eclairage \
+sim:/tb_global_lighting_system/clk_period
+run -all
+run -all
+run -all
+add wave  \
+sim:/tb_global_lighting_system/uut/state_machine_inst/etat_eclairage \
+sim:/tb_global_lighting_system/uut/state_machine_inst/current_state
+add wave  \
+sim:/tb_global_lighting_system/uut/state_machine_inst/next_state
+run -all
+run -all
+run -all
+run -all
+run -all
+# Break key hit 
+restart
+run -all
+run -all
+# WARNING: No extended dataflow license exists
+# Break key hit 
+# Break in Process line__18 at E:/ProjetFPGA/global_lighting_system_project/mesure_luminosite.vhd line 18

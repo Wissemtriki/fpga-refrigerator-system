@@ -1,0 +1,78 @@
+# Reading C:/altera/13.1/modelsim_ase/tcl/vsim/pref.tcl 
+# do machine_etats_eclairage_run_msim_rtl_vhdl.do 
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Copying C:\altera\13.1\modelsim_ase\win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# ** Warning: Copied C:\altera\13.1\modelsim_ase\win32aloem/../modelsim.ini to modelsim.ini.
+#          Updated modelsim.ini.
+# 
+# vcom -93 -work work {E:/ProjetFPGA/machine_etats_eclairage_projet/machine_etats_eclairage.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity machine_etats_eclairage
+# -- Compiling architecture behavioral of machine_etats_eclairage
+# 
+vcom -reportprogress 300 -work work E:/ProjetFPGA/machine_etats_eclairage_projet/machine_etats_eclairage.vhd
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity machine_etats_eclairage
+# -- Compiling architecture behavioral of machine_etats_eclairage
+vcom -reportprogress 300 -work work E:/ProjetFPGA/machine_etats_eclairage_projet/tb_machine_etats_eclairage.vhd
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity tb_machine_etats_eclairage
+# -- Compiling architecture behavior of tb_machine_etats_eclairage
+vsim +altera -do machine_etats_eclairage_run_msim_rtl_vhdl.do -l msim_transcript -gui work.tb_machine_etats_eclairage
+# vsim +altera -do machine_etats_eclairage_run_msim_rtl_vhdl.do -l msim_transcript -gui work.tb_machine_etats_eclairage 
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.tb_machine_etats_eclairage(behavior)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading work.machine_etats_eclairage(behavioral)
+# do machine_etats_eclairage_run_msim_rtl_vhdl.do 
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Modifying modelsim.ini
+# 
+# vcom -93 -work work {E:/ProjetFPGA/machine_etats_eclairage_projet/machine_etats_eclairage.vhd}
+# Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package std_logic_arith
+# -- Loading package STD_LOGIC_UNSIGNED
+# -- Compiling entity machine_etats_eclairage
+# -- Compiling architecture behavioral of machine_etats_eclairage
+# 
+add wave  \
+sim:/tb_machine_etats_eclairage/clk \
+sim:/tb_machine_etats_eclairage/reset \
+sim:/tb_machine_etats_eclairage/presence_detectee \
+sim:/tb_machine_etats_eclairage/luminosite \
+sim:/tb_machine_etats_eclairage/mode_automatique \
+sim:/tb_machine_etats_eclairage/etat_eclairage \
+sim:/tb_machine_etats_eclairage/clk_period
+run -all
+run -all
+run -all
+# Break key hit 
+# Simulation stop requested.

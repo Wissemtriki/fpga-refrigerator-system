@@ -1,0 +1,60 @@
+|global_lighting_system
+clk => detection_presence:presence_det_inst.clk
+clk => mesure_luminosite:luminosity_inst.clk
+clk => machine_etats_eclairage:state_machine_inst.clk
+reset => detection_presence:presence_det_inst.reset
+reset => mesure_luminosite:luminosity_inst.reset
+reset => machine_etats_eclairage:state_machine_inst.reset
+capteur_mouvement => detection_presence:presence_det_inst.capteur_mouvement
+valeur_luminosite[0] => mesure_luminosite:luminosity_inst.valeur_luminosite[0]
+valeur_luminosite[1] => mesure_luminosite:luminosity_inst.valeur_luminosite[1]
+valeur_luminosite[2] => mesure_luminosite:luminosity_inst.valeur_luminosite[2]
+valeur_luminosite[3] => mesure_luminosite:luminosity_inst.valeur_luminosite[3]
+valeur_luminosite[4] => mesure_luminosite:luminosity_inst.valeur_luminosite[4]
+valeur_luminosite[5] => mesure_luminosite:luminosity_inst.valeur_luminosite[5]
+valeur_luminosite[6] => mesure_luminosite:luminosity_inst.valeur_luminosite[6]
+valeur_luminosite[7] => mesure_luminosite:luminosity_inst.valeur_luminosite[7]
+mode_automatique => machine_etats_eclairage:state_machine_inst.mode_automatique
+etat_eclairage[0] <= machine_etats_eclairage:state_machine_inst.etat_eclairage[0]
+etat_eclairage[1] <= machine_etats_eclairage:state_machine_inst.etat_eclairage[1]
+
+
+|global_lighting_system|detection_presence:presence_det_inst
+capteur_mouvement => detect_state.DATAIN
+clk => detect_state.CLK
+reset => detect_state.ACLR
+presence_detectee <= detect_state.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|global_lighting_system|mesure_luminosite:luminosity_inst
+valeur_luminosite[0] => LessThan0.IN16
+valeur_luminosite[1] => LessThan0.IN15
+valeur_luminosite[2] => LessThan0.IN14
+valeur_luminosite[3] => LessThan0.IN13
+valeur_luminosite[4] => LessThan0.IN12
+valeur_luminosite[5] => LessThan0.IN11
+valeur_luminosite[6] => LessThan0.IN10
+valeur_luminosite[7] => LessThan0.IN9
+clk => internal_luminosite.CLK
+reset => internal_luminosite.ACLR
+niveau_lumiere <= internal_luminosite.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|global_lighting_system|machine_etats_eclairage:state_machine_inst
+clk => current_state~1.DATAIN
+reset => current_state~3.DATAIN
+presence_detectee => next_state.DATAA
+presence_detectee => Selector0.IN2
+presence_detectee => next_state.OUTPUTSELECT
+presence_detectee => next_state.OUTPUTSELECT
+presence_detectee => Selector1.IN0
+presence_detectee => next_state.DATAA
+luminosite => next_state.OUTPUTSELECT
+luminosite => next_state.OUTPUTSELECT
+luminosite => Selector1.IN1
+luminosite => process_1.IN0
+mode_automatique => process_1.IN1
+etat_eclairage[0] <= etat_eclairage[0].DB_MAX_OUTPUT_PORT_TYPE
+etat_eclairage[1] <= etat_eclairage[1].DB_MAX_OUTPUT_PORT_TYPE
+
+

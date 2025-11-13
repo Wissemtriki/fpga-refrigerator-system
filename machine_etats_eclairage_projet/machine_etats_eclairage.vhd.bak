@@ -1,0 +1,54 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity machine_etats_eclairage is
+    Port (
+        presence_detectee : in std_logic;  -- Input from the presence detection module
+        niveau_lumiere    : in std_logic;  -- Input from the light measurement module
+        clk               : in std_logic;
+        reset             : in std_logic;
+        etat_eclairage    : out std_logic  -- Output to control lighting (0: off, 1: on)
+    );
+end machine_etats_eclairage;
+
+architecture Behavioral of machine_etats_eclairage is
+    type etat_type is (Eclairage_Desactive, Eclairage_Active, Eclairage_Automatique);
+    signal etat_actuel, etat_suivant : etat_type;
+begin
+    process(clk, reset)
+    begin
+        if reset = '1' then
+            etat_actuel <= Eclairage_Desactive;  -- Reset to off state
+        elsif rising_edge(clk) then
+            etat_actuel <= etat_suivant;  -- Update state
+        end if;
+    end process;
+
+    process(etat_actuel, presence_detectee, niveau_lumiere)
+    begin
+        case etat_actuel is
+            when Eclairage_Desactive =>
+                if presence_detectee = '1' and niveau_lumiere = '1' then
+                    etat_suivant <= Eclairage_Active;  -- Turn light on if presence detected and light is low
+                else
+                    etat_suivant <= Eclairage_Desactive;
+                end if;
+                etat_eclairage <= '0';  -- Light is off
+
+            when Eclairage_Active =>
+                if presence_detectee = '0' then
+                    etat_suivant <= Eclairage_Desactive;  -- Turn off if no presence detected
+                elsif niveau_lumiere = '0' then
+                    etat_suivant <= Eclairage_Desactive;
+                else
+                    etat_suivant <= Eclairage_Active;
+                end if;
+                etat_eclairage <= '1';  -- Light is on
+
+            when others =>
+                etat_suivant <= Eclairage_Desactive;
+        end case;
+    end process;
+end Behavioral;

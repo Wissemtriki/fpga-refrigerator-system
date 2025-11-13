@@ -1,0 +1,99 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity tb_global_lighting_system is
+end tb_global_lighting_system;
+
+architecture behavior of tb_global_lighting_system is
+
+    -- Component Declaration for the Unit Under Test (UUT)
+    component global_lighting_system
+        Port (
+            clk               : in  STD_LOGIC;
+            reset             : in  STD_LOGIC;
+            presence_detectee : in  STD_LOGIC;
+            luminosite        : in  STD_LOGIC_VECTOR(7 downto 0);
+            mode_automatique  : in  STD_LOGIC;
+            etat_eclairage    : out STD_LOGIC_VECTOR(1 downto 0)
+        );
+    end component;
+
+    -- Inputs
+    signal clk               : STD_LOGIC := '0';
+    signal reset             : STD_LOGIC := '0';
+    signal presence_detectee : STD_LOGIC := '0';
+    signal luminosite        : STD_LOGIC_VECTOR(7 downto 0) := (others => '0');
+    signal mode_automatique  : STD_LOGIC := '0';
+
+    -- Outputs
+    signal etat_eclairage    : STD_LOGIC_VECTOR(1 downto 0);
+
+    -- Clock period definition
+    constant clk_period : time := 10 ns;
+
+begin
+    -- Instantiate the Unit Under Test (UUT)
+    uut: global_lighting_system
+        Port map (
+            clk => clk,
+            reset => reset,
+            presence_detectee => presence_detectee,
+            luminosite => luminosite,
+            mode_automatique => mode_automatique,
+            etat_eclairage => etat_eclairage
+        );
+
+    -- Clock generation process
+    clk_process :process
+    begin
+        clk <= '0';
+        wait for clk_period/2;
+        clk <= '1';
+        wait for clk_period/2;
+    end process;
+
+    -- Stimulus process
+    stim_proc: process
+    begin
+        -- Initialize Inputs
+        reset <= '1'; -- Assert reset
+        wait for 20 ns;
+        reset <= '0'; -- Deassert reset
+
+        -- Test Case 1: Presence detected, automatic mode off, luminosity low
+        presence_detectee <= '1';
+        luminosite <= "00011000"; -- low light
+        mode_automatique <= '0';
+        wait for 100 ns;
+
+        -- Test Case 2: Presence detected, automatic mode on, luminosity high
+        presence_detectee <= '1';
+        luminosite <= "10000000"; -- high light
+        mode_automatique <= '1';
+        wait for 100 ns;
+
+        -- Test Case 3: No presence, automatic mode on, luminosity medium
+        presence_detectee <= '0';
+        luminosite <= "00111100"; -- medium light
+        mode_automatique <= '1';
+        wait for 100 ns;
+
+        -- Test Case 4: Presence detected, automatic mode on, luminosity low
+        presence_detectee <= '1';
+        luminosite <= "00001100"; -- low light
+        mode_automatique <= '1';
+        wait for 100 ns;
+
+        -- Test Case 5: No presence, automatic mode off, luminosity low
+        presence_detectee <= '0';
+        luminosite <= "00000001"; -- very low light
+        mode_automatique <= '0';
+        wait for 100 ns;
+
+        -- End of simulation
+        wait;
+    end process;
+
+end behavior;

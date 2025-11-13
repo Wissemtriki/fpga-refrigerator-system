@@ -1,0 +1,7 @@
+|detection_presence
+capteur_mouvement => detect_state.DATAIN
+clk => detect_state.CLK
+reset => detect_state.ACLR
+presence_detectee <= detect_state.DB_MAX_OUTPUT_PORT_TYPE
+
+

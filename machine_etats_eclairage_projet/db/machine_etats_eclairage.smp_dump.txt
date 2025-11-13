@@ -1,0 +1,6 @@
+
+State Machine - |machine_etats_eclairage|current_state
+Name current_state.Eclairage_Automatique current_state.Eclairage_Active current_state.Eclairage_Inactif 
+current_state.Eclairage_Inactif 0 0 0 
+current_state.Eclairage_Active 0 1 1 
+current_state.Eclairage_Automatique 1 0 1 

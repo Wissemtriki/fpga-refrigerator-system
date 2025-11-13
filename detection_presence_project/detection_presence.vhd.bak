@@ -1,0 +1,32 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity detection_presence is
+    Port (
+        capteur_mouvement : in std_logic;  -- Input from the motion sensor
+        clk               : in std_logic;  -- Clock signal
+        reset             : in std_logic;  -- Reset signal
+        presence_detectee : out std_logic  -- Output indicating presence detection
+    );
+end detection_presence;
+
+architecture Behavioral of detection_presence is
+    signal detect_state : std_logic := '0';  -- Internal signal to hold the detection state
+begin
+    process(clk, reset)
+    begin
+        if reset = '1' then
+            detect_state <= '0';  -- On reset, no presence detected
+        elsif rising_edge(clk) then
+            if capteur_mouvement = '1' then
+                detect_state <= '1';  -- Presence detected
+            else
+                detect_state <= '0';  -- No presence
+            end if;
+        end if;
+    end process;
+
+    -- Output the detection state
+    presence_detectee <= detect_state;
+
+end Behavioral;

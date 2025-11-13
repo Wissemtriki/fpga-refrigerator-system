@@ -1,0 +1,37 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+
+entity tb_machine_etats_eclairage is
+end tb_machine_etats_eclairage;
+
+architecture Behavioral of tb_machine_etats_eclairage is
+    signal presence_detectee : std_logic := '0';
+    signal niveau_lumiere    : std_logic := '0';
+    signal clk               : std_logic := '0';
+    signal reset             : std_logic := '1';
+    signal etat_eclairage    : std_logic;
+
+begin
+    -- Clock generation
+    clk_process : process
+    begin
+        clk <= '0';
+        wait for 10 ns;
+        clk <= '1';
+        wait for 10 ns;
+    end process;
+
+    -- UUT (Unit Under Test)
+    UUT: entity work.machine_etats_eclairage
+    port map (
+        presence_detectee => presence_detectee,
+        niveau_lumiere    => niveau_lumiere,
+        clk               => clk,
+        reset             => reset,
+        etat_eclairage    => etat_eclairage
+    );
+    
+    -- Stimulus process
+    stim_proc: process
+    begin
+        reset <= '1'; 
